@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.principal;
+package ec.edu.ups.principall;
 
+import ec.edu.ups.principall.ValidacionDeCedula;
+import ec.edu.ups.principall.ValidacionDeNombres;
+import ec.edu.ups.principall.ValidacionNombresIncompletos;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,20 +20,21 @@ import javax.swing.JOptionPane;
  * @author Byron PC
  */
 public class CreatePersona extends javax.swing.JInternalFrame {
-
+    private ControladorCliente controladorCliente;
     public static String x;
     private Persona persona;
 
     /**
      * Creates new form CreatePersona
      */
-    public CreatePersona() {
+    public CreatePersona(ControladorCliente controladorCliente) {
+       this.controladorCliente = controladorCliente;
         this.persona = persona;
+        this.controladorCliente.getCodigo();
         initComponents();
         x = "x";
         int a = ManejoRandomicos.DesktopPane.getWidth() - this.getWidth();
         int b = ManejoRandomicos.DesktopPane.getHeight() - this.getHeight();
-
         setLocation(a / 2, b / 2);
         setVisible(true);
 
@@ -59,7 +65,7 @@ public class CreatePersona extends javax.swing.JInternalFrame {
         jPanel10 = new javax.swing.JPanel();
         txtsueldo = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
-        txtnacimiento = new javax.swing.JTextField();
+        txtfecha = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -158,9 +164,7 @@ public class CreatePersona extends javax.swing.JInternalFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         btnvalidar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -221,22 +225,27 @@ public class CreatePersona extends javax.swing.JInternalFrame {
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fecha Nacimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(102, 102, 102))); // NOI18N
 
-        txtnacimiento.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        txtfecha.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        txtfecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfechaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(txtnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(txtnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(txtfecha, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,20 +263,19 @@ public class CreatePersona extends javax.swing.JInternalFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 44, Short.MAX_VALUE))
+                .addGap(0, 45, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(181, 181, 181)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(184, 184, 184)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnvalidar1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btncanclear1)))))
+                        .addComponent(btnvalidar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btncanclear1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -279,16 +287,16 @@ public class CreatePersona extends javax.swing.JInternalFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnvalidar1)
                     .addComponent(btncanclear1)))
@@ -298,63 +306,66 @@ public class CreatePersona extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnvalidar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvalidar1ActionPerformed
-        // TODO add your handling code here:
         String ruta = "archivo.ups";
-        persona = new Persona();
+        Persona persona = new Persona();
+        String nombre = txtnombres.getText();
+        String apellido = txtapellido.getText();
+        int c = 0;
         try {
-
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
+            System.out.println("Tamaño de Archivo: "+archivo.length());
 
+            persona.setNombre(nombre);
+            persona.setApellido(apellido);
             persona.setCedula(txtcedula.getText());
-            persona.setApellido(txtapellido.getText());
             persona.setEdad(Integer.parseInt(txtedad.getText()));
-            persona.setFechaNacimiento(txtnacimiento.getText());
-            persona.setNombre(txtnombres.getText());
-            persona.setSueldo(Double.parseDouble(txtsueldo.getText()));
-            persona.setTelefono(txtcelular.getText());
-            if (persona.getNombre() != null && persona.getApellido() != null && persona.getCedula() != null && persona.getEdad() != 0 && persona.getFechaNacimiento() != null && persona.getSueldo() != 0 && persona.getTelefono() != null) {
-                JOptionPane.showConfirmDialog(this, "Persona creada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);               
-                
-                archivo.writeUTF(txtapellido.getText());
-                archivo.writeUTF(txtcedula.getText());
-                archivo.writeUTF(txtcelular.getText());
-                archivo.writeInt(Integer.parseInt(txtedad.getText()));
-                archivo.writeUTF(txtnacimiento.getText());
-                archivo.writeUTF(txtnombres.getText());
-                archivo.writeDouble(Double.parseDouble(txtsueldo.getText()));
-                
-                archivo.close();
-                
-                System.out.println("******************************");
-                txtapellido.setText("");
-                txtcedula.setText("");
-                txtcelular.setText("");
-                txtedad.setText("");
-                txtnacimiento.setText("");
-                txtnombres.setText("");
-                txtsueldo.setText("");
 
+            if (txtcelular.getText().length() != 10) {
+                JOptionPane.showMessageDialog(this, "Ingrese los dies numeros del celular\n", "Error celular",JOptionPane.INFORMATION_MESSAGE);
+            } else if (txtfecha.getText().length() != 10) {
+                JOptionPane.showMessageDialog(this, "Ingrese correctamentela fecha\n", "Error fecha", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                archivo.seek(archivo.length());
+                for (int i = txtnombres.getText().length() + 1; i <= 50; i++) {
+                    nombre = nombre.substring(0) + " ";
+                }
+                archivo.writeUTF(nombre);
+                for (int i = txtapellido.getText().length() + 1; i <= 50; i++) {
+                    apellido = apellido.substring(0) + " ";
+                }
+                archivo.writeUTF(apellido);
+                archivo.writeUTF(txtcedula.getText());
+                archivo.writeInt(Integer.parseInt(txtedad.getText()));
+                archivo.writeUTF(txtfecha.getText());
+                archivo.writeUTF(txtcelular.getText());
+                archivo.writeDouble(Double.parseDouble(txtsueldo.getText()));
             }
-        } catch (ValidacionDeCedula e1) {
-            JOptionPane.showMessageDialog(this, "Su error es: \n" + e1.toString(), "", JOptionPane.WARNING_MESSAGE);
-        } catch (ValidacionFechaNacimiento e2) {
-            JOptionPane.showMessageDialog(this, "Su error es: \n" + e2.toString(), "", JOptionPane.WARNING_MESSAGE);
+            archivo.close();
+
+        } catch (FileNotFoundException e8) {
+             JOptionPane.showMessageDialog(this, "Su error es: \n" + e8.toString(), "", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException e9) {
+            JOptionPane.showMessageDialog(this, "Su error es: \n" + e9.toString(), "", JOptionPane.WARNING_MESSAGE);
         } catch (ValidacionDeNombres e3) {
             JOptionPane.showMessageDialog(this, "Su error es: \n" + e3.toString(), "", JOptionPane.WARNING_MESSAGE);
         } catch (ValidacionNombresIncompletos e4) {
-            JOptionPane.showMessageDialog(this, "Su error es: \n" + e4.toString(), "", JOptionPane.WARNING_MESSAGE);
-        } catch (ValidacionSueldo e5) {
-            JOptionPane.showMessageDialog(this, "Su error es: \n" + e5.toString(), "", JOptionPane.WARNING_MESSAGE);
-        } catch (ValidacionTelefono e6) {
-            JOptionPane.showMessageDialog(this, "Su error es: \n" + e6.toString(), "", JOptionPane.WARNING_MESSAGE);
+             JOptionPane.showMessageDialog(this, "Su error es: \n" + e4.toString(), "", JOptionPane.WARNING_MESSAGE);
+        } catch (ValidacionDeCedula e1) { 
+             JOptionPane.showMessageDialog(this, "Su error es: \n" + e1.toString(), "", JOptionPane.WARNING_MESSAGE);
         } catch (LongitudFueraDeRangoException e7) {
-            JOptionPane.showMessageDialog(this, "Su error es: \n" + e7.toString(), "", JOptionPane.WARNING_MESSAGE);
-        } catch (FileNotFoundException e8) {
-            JOptionPane.showMessageDialog(this, "Su error es: \n" + e8.toString(), "", JOptionPane.WARNING_MESSAGE);
-        }catch(IOException e9){
-            JOptionPane.showMessageDialog(this, "Su error es: \n" + e9.toString(), "", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(this, "Su error es: \n" + e7.toString(), "", JOptionPane.WARNING_MESSAGE);
         }
+        JOptionPane.showConfirmDialog(this, "Persona creada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);               
+        System.out.println("******************************");
+        txtcedula.setText("");
+        txtnombres.setText("");
+        txtapellido.setText("");
+        txtcelular.setText("");
+        txtedad.setText("");
+        txtfecha.setText("");
+        txtsueldo.setText("");
 
+        
 
     }//GEN-LAST:event_btnvalidar1ActionPerformed
 
@@ -374,6 +385,10 @@ public class CreatePersona extends javax.swing.JInternalFrame {
         x = null;
     }//GEN-LAST:event_formInternalFrameClosing
 
+    private void txtfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfechaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncanclear1;
@@ -390,7 +405,7 @@ public class CreatePersona extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtcedula;
     private javax.swing.JTextField txtcelular;
     private javax.swing.JTextField txtedad;
-    private javax.swing.JTextField txtnacimiento;
+    private javax.swing.JTextField txtfecha;
     private javax.swing.JTextField txtnombres;
     private javax.swing.JTextField txtsueldo;
     // End of variables declaration//GEN-END:variables

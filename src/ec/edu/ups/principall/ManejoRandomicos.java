@@ -3,22 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.principal;
+package ec.edu.ups.principall;
 
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Byron PC
+ * postlist sql
+ * pg admin interfaz
+ * 
  */
 public class ManejoRandomicos extends javax.swing.JFrame {
 private CreatePersona createPersona;
+private BuscarPersona buscarPersona;
+private UpdateCliente updateCliente;
+private DeletePersona deletePersona;
+private ListarPersona listarPersona;
+private ControladorCliente controladorCliente;
     /**
      * Creates new form ManejoRandomicos
      */
     public ManejoRandomicos() {
         initComponents();
         this.setExtendedState(ManejoRandomicos.MAXIMIZED_BOTH);
+        controladorCliente = new ControladorCliente();
     }
 
     /**
@@ -74,19 +83,39 @@ private CreatePersona createPersona;
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Buscar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.setText("Actualizar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem5.setText("jMenuItem5");
+        jMenuItem5.setText("Borrar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem4.setText("jMenuItem4");
+        jMenuItem4.setText("Listar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
@@ -117,7 +146,7 @@ private CreatePersona createPersona;
         try{            
             if (x == null) {
                 if (createPersona == null || createPersona.isVisible() == false) {
-                    createPersona = new CreatePersona();
+                    createPersona = new CreatePersona(controladorCliente);
                     DesktopPane.add(createPersona);
                 }
             } else {
@@ -128,6 +157,75 @@ private CreatePersona createPersona;
         }
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        String x = BuscarPersona.x;
+        try{            
+            if (x == null) {
+                if (buscarPersona == null || buscarPersona.isVisible() == false) {
+                    buscarPersona = new BuscarPersona(controladorCliente);
+                    DesktopPane.add(buscarPersona);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        }catch (Exception e) {
+            e.printStackTrace(); 
+        }
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+          String x = UpdateCliente.x;
+        try{            
+            if (x == null) {
+                if (updateCliente == null || updateCliente.isVisible() == false) {
+                    updateCliente = new UpdateCliente(controladorCliente);
+                    DesktopPane.add(updateCliente);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        }catch (Exception e) {
+            e.printStackTrace(); 
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+         String x = DeletePersona.x;
+        try{            
+            if (x == null) {
+                if (deletePersona == null || deletePersona.isVisible() == false) {
+                    deletePersona = new DeletePersona();
+                    DesktopPane.add(deletePersona);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        }catch (Exception e) {
+            e.printStackTrace(); 
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        String x = ListarPersona.x;
+        try{            
+            if (x == null) {
+                if (listarPersona == null || listarPersona.isVisible() == false) {
+                    listarPersona = new ListarPersona();
+                    DesktopPane.add(listarPersona);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        }catch (Exception e) {
+            e.printStackTrace(); 
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

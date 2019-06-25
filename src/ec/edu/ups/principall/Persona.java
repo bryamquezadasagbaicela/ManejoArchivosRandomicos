@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.principal;
+package ec.edu.ups.principall;
+
+import ec.edu.ups.principall.ValidacionDeCedula;
 
 /**
  *
  * @author Byron PC
  */
 public class Persona {
-    
+
     private String cedula;
     private String nombre;
     private String apellido;
@@ -18,6 +20,7 @@ public class Persona {
     private double sueldo;
     private String telefono;
     private String fechaNacimiento;
+    private int codigo;
 
     public Persona() {
     }
@@ -26,7 +29,7 @@ public class Persona {
         return cedula;
     }
 
-   public void setCedula(String cedula) throws ValidacionDeCedula {
+    public void setCedula(String cedula) throws ValidacionDeCedula {
         if (cedula.length() == 10) {
             int pos = Integer.parseInt(cedula.substring(2, 3));
             if (pos <= 6) {
@@ -63,69 +66,80 @@ public class Persona {
         for (int i = 0; i < nombre.length(); i++) {
             if ((nombre.charAt(i) < 60 || nombre.charAt(i) > 100 && nombre.charAt(i) < 97 || nombre.charAt(i) > 122) && nombre.charAt(i) != 32) {
                 si = false;
-               
+
             }
         }
-        if(si){
-            if(nombre.contains(" ")){
-                
-                this.nombre = nombre;
-            }else{
-                throw  new ValidacionNombresIncompletos();
+        if (si) {
+            if (nombre.contains(" ")) {                
+                    while(nombre.length()<50){
+                        nombre=nombre + " ";
+                       this.nombre = nombre;
+                       si=true;
+                    }    
+                   
+            } else {
+                throw new ValidacionNombresIncompletos();
             }
-        }else{
-            throw  new ValidacionDeNombres();
+        } else {
+            throw new ValidacionDeNombres();
         }
-        
+
     }
 
     public String getApellido() {
         return apellido;
     }
 
-      public void setApellido(String apellido) throws ValidacionNombresIncompletos, ValidacionDeNombres {
+    public void setApellido(String apellido) throws ValidacionNombresIncompletos, ValidacionDeNombres {
         boolean si = true;
         for (int i = 0; i < apellido.length(); i++) {
             if ((apellido.charAt(i) < 60 || apellido.charAt(i) > 100 && apellido.charAt(i) < 97 || apellido.charAt(i) > 122) && apellido.charAt(i) != 32) {
                 si = false;
-               
+
             }
         }
-        if(si){
-            if(apellido.contains(" ")){
+        if (si) {
+            if (apellido.contains(" ")) {
                 
-                this.apellido = apellido;
-            }else{
-                throw  new ValidacionNombresIncompletos();
+                    while(apellido.length()<50){
+                        apellido=apellido + " ";
+                         this.apellido = apellido;
+                         si=true;
+                    }
+                
+            
+
+                
+            } else {
+                throw new ValidacionNombresIncompletos();
             }
-        }else{
-            throw  new ValidacionDeNombres();
+        } else {
+            throw new ValidacionDeNombres();
         }
-    
-    } 
-    
+
+    }
 
     public int getEdad() {
         return edad;
     }
 
     public void setEdad(int edad) throws LongitudFueraDeRangoException {
-          if(edad >= 20 && edad<=35){
+        if (edad>=1) {
             this.edad = edad;
-        }else{
+        } else {
             throw new LongitudFueraDeRangoException("La edad debe estar comprendida entre 20 y 35 años");
         }
-        
+
     }
 
     public double getSueldo() {
         return sueldo;
     }
 
-    public void setSueldo(double sueldo) throws ValidacionSueldo{
-        if(sueldo>=0.0){
+    public void setSueldo(double sueldo) throws ValidacionSueldo {
+        if (sueldo >= 0.0) {
             this.sueldo = sueldo;
-        }else{
+        } else {
             throw new ValidacionSueldo("Su sueldo no es el correcto");
         }
     }
@@ -135,7 +149,7 @@ public class Persona {
     }
 
     public void setTelefono(String telefono) throws ValidacionTelefono {
-        if(telefono.length() == 10){
+        if (telefono.length() == 10) {
             this.telefono = telefono;
         } else {
             throw new ValidacionTelefono("Su telefono ingresado no es el correcto");
@@ -146,15 +160,50 @@ public class Persona {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) throws  ValidacionFechaNacimiento{
-        if(fechaNacimiento.contains("/")){
-            this.fechaNacimiento = fechaNacimiento;
-        }else{
-            throw new ValidacionFechaNacimiento("Su fecha es incorrecta");
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+  
+
+   
+
+    
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 61 * hash + this.codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Persona other = (Persona) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        return true;
     }
     
     
     
+
 }

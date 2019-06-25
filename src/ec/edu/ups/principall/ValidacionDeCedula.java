@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.principal;
+package ec.edu.ups.principall;
 
 /**
  *
- * @author Byron PC
+ * @author erics
  */
-public class ValidacionDeCedula extends Exception{
+public class ValidacionDeCedula  extends Exception {
     public ValidacionDeCedula(){
         super("La cédula ingresa no es valida");
         
     }
+    
 }

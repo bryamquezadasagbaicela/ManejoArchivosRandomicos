@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.principal;
+package ec.edu.ups.principall;
 
 /**
  *
- * @author Byron PC
+ * @author erics
  */
-public class ValidacionNombresIncompletos extends Exception {
+public class ValidacionNombresIncompletos  extends Exception {
     
     public ValidacionNombresIncompletos(){        
         super("Sus nombres no se encuentran completos\n"+"Por favor Verificar");        
