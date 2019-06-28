@@ -6,6 +6,7 @@
 package ec.edu.ups.principall;
 
 import ec.edu.ups.principall.ValidacionDeCedula;
+import java.util.Date;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Persona {
     private int edad;
     private double sueldo;
     private String telefono;
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     private int codigo;
 
     public Persona() {
@@ -156,13 +157,26 @@ public class Persona {
         }
     }
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    public Persona(String cedula, String nombre, String apellido, int edad, Date fechaNacimiento, String telefono ,double sueldo) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.sueldo = sueldo;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+     
+    }
+
+  
 
   
 
