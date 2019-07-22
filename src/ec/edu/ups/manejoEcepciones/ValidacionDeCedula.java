@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.principall;
+package ec.edu.ups.manejoEcepciones;
 
 /**
  *
  * @author erics
  */
-public class ValidacionDeNombres extends Exception {
-     public ValidacionDeNombres(){        
-        super("Ha ingresado un número en su nombre\n"+"Por favor Verificar");        
+public class ValidacionDeCedula  extends Exception {
+    public ValidacionDeCedula(){
+        super("La cédula ingresa no es valida");
+        
     }
     
 }

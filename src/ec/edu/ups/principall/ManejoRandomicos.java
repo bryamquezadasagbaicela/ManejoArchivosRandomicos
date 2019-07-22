@@ -5,11 +5,12 @@
  */
 package ec.edu.ups.principall;
 
+import ec.edu.ups.controladores.ControladorCliente;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Byron PC
+ * @author QuezadaBryam
  * postlist sql
  * pg admin interfaz
  * 

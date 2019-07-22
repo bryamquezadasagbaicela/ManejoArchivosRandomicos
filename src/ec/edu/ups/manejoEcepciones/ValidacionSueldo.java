@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.principall;
+package ec.edu.ups.manejoEcepciones;
 
 /**
  *
- * @author erics
+ * @author Byron PC
  */
-public class ValidacionDeCedula  extends Exception {
-    public ValidacionDeCedula(){
-        super("La cédula ingresa no es valida");
-        
+public class ValidacionSueldo extends Exception{
+
+    public ValidacionSueldo(String su_sueldo_no_es_correco) {
+        super("Su sueldo no es el correcto");
     }
     
 }

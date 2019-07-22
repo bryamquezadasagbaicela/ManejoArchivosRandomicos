@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.principall;
+package ec.edu.ups.controladores;
 
+import ec.edu.ups.principall.Persona;
 import java.util.HashSet;
 import java.util.Set;
 

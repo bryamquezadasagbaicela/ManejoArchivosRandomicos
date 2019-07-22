@@ -5,7 +5,12 @@
  */
 package ec.edu.ups.principall;
 
-import ec.edu.ups.principall.ValidacionDeCedula;
+import ec.edu.ups.manejoEcepciones.ValidacionTelefono;
+import ec.edu.ups.manejoEcepciones.ValidacionSueldo;
+import ec.edu.ups.manejoEcepciones.ValidacionNombresIncompletos;
+import ec.edu.ups.manejoEcepciones.ValidacionDeNombres;
+import ec.edu.ups.manejoEcepciones.LongitudFueraDeRangoException;
+import ec.edu.ups.manejoEcepciones.ValidacionDeCedula;
 import java.util.Date;
 
 /**
